@@ -135,6 +135,7 @@ let cram_stanzas lexbuf =
 
 let run_expect_test file ~f =
   let file_contents = Io.read_file ~binary:false file in
+  Fpath.unlink_no_err (Path.to_string file);
   let open Fiber.O in
   let+ expected =
     let lexbuf =
